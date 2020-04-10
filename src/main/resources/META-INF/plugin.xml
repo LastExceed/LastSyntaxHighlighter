@@ -1,0 +1,30 @@
+<idea-plugin>
+    <id>LastExceed.LastSyntaxHighlighter</id>
+    <name>LastSyntaxHighlighter</name>
+    <vendor email="chris20194@googlemail.com" url="http://www.github.com/LastExceed">LastExceed</vendor>
+
+    <description><![CDATA[
+    Even more syntax highlighting
+    <br><br>
+    IntelliJ wants 40 characters
+    ]]></description>
+
+    <!-- please see http://www.jetbrains.org/intellij/sdk/docs/basics/getting_started/plugin_compatibility.html
+         on how to target different products -->
+    <depends>com.intellij.modules.platform</depends>
+
+    <extensions defaultExtensionNs="com.intellij">
+        <annotator language="C#" implementationClass="CsharpAnnotator"/>
+        <colorSettingsPage implementation="CsharpColorSettings"/>
+        <annotator language="kotlin" implementationClass="KotlinAnnotator"/>
+        <colorSettingsPage implementation="KotlinColorSettings"/>
+        <annotator language="Rust" implementationClass="RustAnnotator"/>
+        <colorSettingsPage implementation="RustColorSettings"/>
+        <annotator language="SQL" implementationClass="SqlAnnotator"/>
+        <colorSettingsPage implementation="SqlColorSettings"/>
+    </extensions>
+
+    <actions>
+        <!-- Add your actions here -->
+    </actions>
+</idea-plugin>
