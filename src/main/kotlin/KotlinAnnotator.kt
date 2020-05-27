@@ -1,36 +1,38 @@
-import com.intellij.psi.PsiElement
+import com.intellij.openapi.editor.colors.TextAttributesKey
 
 class KotlinAnnotator : BaseAnnotator() {
-	override fun getKeywordKind(element: PsiElement) = when (element.text) {
-		"true",
-		"false",
-		"null"
-		-> KotlinColorSettings.value
+	override val attributes = mapOf(
+		"true" to value,
+		"false" to value,
+		"null" to value,
 
-		"constructor",
-		"init"
-		-> KotlinColorSettings.initializer
+		"constructor" to initializer,
+		"init" to initializer,
 
-		"this",
-		"super"
-		-> KotlinColorSettings.selfReference
+		"this" to selfReference,
+		"super" to selfReference,
 
-		"break",
-		"return",
-		"continue",
-		"throw",
+		"break" to flowControl,
+		"return" to flowControl,
+		"continue" to flowControl,
+		"throw" to flowControl,
 
-		"if",
-		"else",
-		"for",
-		"while",
-		"do",
-		"when",
-		"try",
-		"catch",
-		"finally"
-		-> KotlinColorSettings.flowControl
+		"if" to flowControl,
+		"else" to flowControl,
+		"for" to flowControl,
+		"while" to flowControl,
+		"do" to flowControl,
+		"when" to flowControl,
+		"try" to flowControl,
+		"catch" to flowControl,
+		"finally" to flowControl
+	)
 
-		else -> null
+	companion object {
+		private val fallback = TextAttributesKey.find("JAVA_KEYWORD")
+		val value = TextAttributesKey.createTextAttributesKey("KOTLIN.TRUE_FALSE_NULL", fallback)
+		val initializer = TextAttributesKey.createTextAttributesKey("KOTLIN.INITIALIZER", fallback)
+		val selfReference = TextAttributesKey.createTextAttributesKey("KOTLIN.SELF_REFERENCE", fallback)
+		val flowControl = TextAttributesKey.createTextAttributesKey("KOTLIN.FLOW_CONTROL", fallback)
 	}
 }

@@ -1,33 +1,36 @@
+import com.intellij.openapi.editor.colors.TextAttributesKey
 import com.intellij.psi.PsiElement
 
 class RustAnnotator : BaseAnnotator() {
-	override fun getKeywordKind(element: PsiElement) = when (element.text) {
-		"true",
-		"false"
-		-> RustColorSettings.value
+	override val attributes = mapOf(
+		"true" to value,
+		"false" to value,
 
-		"self",
-		"Self",
-		"super"
-		-> RustColorSettings.selfReference
+		"self" to selfReference,
+		"Self" to selfReference,
+		"super" to selfReference,
 
-		"break",
-		"return",
-		"continue",
+		"break" to flowControl,
+		"return" to flowControl,
+		"continue" to flowControl,
 
-		"if",
-		"else",
-		"for",
-		"while",
-		"loop"
-		-> RustColorSettings.flowControl
+		"if" to flowControl,
+		"else" to flowControl,
+		"for" to flowControl,
+		"while" to flowControl,
+		"loop" to flowControl,
 
-		"const",
-		"extern",
-		"mut",
-		"pub"
-		-> RustColorSettings.modifier
+		"const" to modifier,
+		"extern" to modifier,
+		"mut" to modifier,
+		"pub" to modifier
+	)
 
-		else -> null
+	companion object {
+		private val fallback = TextAttributesKey.find("RUST_KEYWORD")
+		val value = TextAttributesKey.createTextAttributesKey("RUST.TRUE_FALSE", fallback)
+		val selfReference = TextAttributesKey.createTextAttributesKey("RUST.SELF_REFERENCE", fallback)
+		val flowControl = TextAttributesKey.createTextAttributesKey("RUST.FLOW_CONTROL", fallback)
+		val modifier = TextAttributesKey.createTextAttributesKey("RUST.MODIFIER", fallback)
 	}
 }

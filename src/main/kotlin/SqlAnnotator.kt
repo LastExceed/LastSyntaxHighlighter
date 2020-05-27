@@ -1,29 +1,31 @@
-import com.intellij.psi.PsiElement
+import com.intellij.openapi.editor.colors.TextAttributesKey
 
 class SqlAnnotator : BaseAnnotator() {
-	override fun getKeywordKind(element: PsiElement) = when (element.text.toUpperCase()) {
-		"ADD",
-		"ALTER",
-		"BACKUP",
-		"CREATE",
-		"DELETE",
-		"DROP",
-		"EXEC",
-		"INSERT",
-		"INTO",
-		"SELECT"
-		-> SqlColorSettings.action
+	override val attributes = mapOf(
+		"ADD" to action,
+		"ALTER" to action,
+		"BACKUP" to action,
+		"CREATE" to action,
+		"DELETE" to action,
+		"DROP" to action,
+		"EXEC" to action,
+		"INSERT" to action,
+		"INTO" to action,
+		"SELECT" to action,
 
-		"CONSTRAINT",
-		"COLUMN",
-		"DATABASE",
-		"INDEX",
-		"PROCEDURE",
-		"TABLE",
-		"UNIQUE",
-		"VIEW"
-		-> SqlColorSettings.variant
+		"CONSTRAINT" to variant,
+		"COLUMN" to variant,
+		"DATABASE" to variant,
+		"INDEX" to variant,
+		"PROCEDURE" to variant,
+		"TABLE" to variant,
+		"UNIQUE" to variant,
+		"VIEW" to variant
+	)
 
-		else -> null
+	companion object {
+		private val fallback = TextAttributesKey.find("JAVA_KEYWORD")
+		val action = TextAttributesKey.createTextAttributesKey("SQL.ACTION", fallback)
+		val variant = TextAttributesKey.createTextAttributesKey("SQL.VARIANT", fallback)
 	}
 }

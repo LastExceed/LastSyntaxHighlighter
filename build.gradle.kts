@@ -7,7 +7,7 @@ plugins {
 }
 
 group = "com.github.lastexceed"
-version = "2.8.0"
+version = "2.9.0"
 
 repositories {
 	mavenCentral()
@@ -19,11 +19,11 @@ dependencies {
 
 // See https://github.com/JetBrains/gradle-intellij-plugin/
 intellij {
-	//version = "2020.1"
+	//version = "2020.2"
 }
 
 tasks.withType<KotlinCompile> {
-	kotlinOptions.jvmTarget = "13"
+	kotlinOptions.jvmTarget = "1.8"
 }
 tasks.getByName<PatchPluginXmlTask>("patchPluginXml") {
 	changeNotes("""Reimplemented in Kotlin""")
