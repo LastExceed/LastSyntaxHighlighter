@@ -14,14 +14,14 @@
     <depends>com.intellij.modules.platform</depends>
 
     <extensions defaultExtensionNs="com.intellij">
-        <annotator language="C#" implementationClass="CsharpAnnotator"/>
-        <colorSettingsPage implementation="CsharpColorSettings"/>
-        <annotator language="kotlin" implementationClass="KotlinAnnotator"/>
-        <colorSettingsPage implementation="KotlinColorSettings"/>
-        <annotator language="Rust" implementationClass="RustAnnotator"/>
-        <colorSettingsPage implementation="RustColorSettings"/>
-        <annotator language="SQL" implementationClass="SqlAnnotator"/>
-        <colorSettingsPage implementation="SqlColorSettings"/>
+        <annotator language="C#" implementationClass="AnnotatorCsharp"/>
+        <colorSettingsPage implementation="SettingsColorCsharp"/>
+        <annotator language="kotlin" implementationClass="AnnotatorKotlin"/>
+        <colorSettingsPage implementation="SettingsColorKotlin"/>
+        <annotator language="Rust" implementationClass="AnnotatorRust"/>
+        <colorSettingsPage implementation="SettingsColorRust"/>
+        <annotator language="SQL" implementationClass="AnnotatorSql"/>
+        <colorSettingsPage implementation="SettingsColorSql"/>
     </extensions>
 
     <actions>
