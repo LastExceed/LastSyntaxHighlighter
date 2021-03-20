@@ -14,7 +14,7 @@ abstract class AnnotatorBase(companion: AnnotatorCompanion) : Annotator {
 		if (element !is LeafPsiElement) return
 		val kind = kinds[element.text] ?: return
 		holder.newAnnotation(HighlightSeverity.INFORMATION, "")
-			.range(element.getTextRange())
+			.range(element.textRange)
 			.textAttributes(kind)
 			.create()
 	}
